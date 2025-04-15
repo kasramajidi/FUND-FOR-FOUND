@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Temporary Strapi files
+.tmp/
+
+# Uploads directory (if you don't want to track media)
+public/uploads/
+
+# Logs
+logs/
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment variables (for sensitive info)
+.env
