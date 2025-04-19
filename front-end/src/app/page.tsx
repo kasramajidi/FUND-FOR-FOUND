@@ -1,8 +1,5 @@
+import Home from "../components/home/Home";
 
-export default function Home() {
-  return (
-    <div>
-      kasra
-    </div>
-  );
+export default function Page(): React.ReactElement {
+  return <Home />;
 }

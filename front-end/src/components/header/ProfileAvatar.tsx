@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useAuth } from "./../../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 export default function ProfileAvatar() {
   const { isAuthenticated } = useAuth();
   return (

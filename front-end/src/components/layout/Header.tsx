@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -53,7 +54,7 @@ export default function Header({ className }: HeaderProps): React.ReactElement {
           </div>
         </div>
       </header>
-      <hr className="bg-[#D7CFF9] mt-5 h-[2px]" />
+      <hr className="bg-[#D7CFF9] mt-5 h-[2px] lg:block hidden" />
     </>
   );
 }
