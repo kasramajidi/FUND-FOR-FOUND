@@ -31,13 +31,7 @@ const dataPage: MenuItem[] = [
   },
 ];
 
-interface HamburgerMenuProps {
-  className?: string;
-}
-
-export default function HamburgerMenu({
-  className,
-}: HamburgerMenuProps): React.ReactElement {
+export default function HamburgerMenu(): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
