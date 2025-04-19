@@ -2,7 +2,6 @@ import { ReactNode, ComponentType, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 
-
 interface ProtectedRouteProps {
   children: ReactNode;
 }
@@ -18,9 +17,9 @@ const ProtectedRoute = <P extends ProtectedRouteProps>(
       if (!isAuthenticated) {
         router.push("/login");
       }
-    }, [isAuthenticated]);
+    }, [isAuthenticated, router]);
 
-    return <WrappedComponent {...props} />;
+    return isAuthenticated ? <WrappedComponent {...props} /> : null;
   };
 
   return Wrapper;

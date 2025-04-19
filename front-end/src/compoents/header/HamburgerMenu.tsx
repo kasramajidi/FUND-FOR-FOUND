@@ -44,7 +44,7 @@ export default function HamburgerMenu({
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex flex-col gap-1.5"
+        className={`flex flex-col gap-1.5 ${className || ""}`}
         type="button"
         aria-label="Open menu"
       >
