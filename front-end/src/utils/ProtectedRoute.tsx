@@ -1,4 +1,4 @@
-import { ReactNode, ComponentType, useEffect } from "react";
+import { ReactNode, ComponentType, useEffect, useCallback } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/router";
 
@@ -13,11 +13,15 @@ const ProtectedRoute = <P extends ProtectedRouteProps>(
     const { isAuthenticated } = useAuth();
     const router = useRouter();
 
-    useEffect(() => {
+    const redirectToLogin = useCallback(() => {
       if (!isAuthenticated) {
         router.push("/login");
       }
     }, [isAuthenticated, router]);
+
+    useEffect(() => {
+      redirectToLogin();
+    }, [redirectToLogin]);
 
     return isAuthenticated ? <WrappedComponent {...props} /> : null;
   };

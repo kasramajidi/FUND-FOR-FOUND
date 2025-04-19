@@ -31,20 +31,14 @@ const dataPage: MenuItem[] = [
   },
 ];
 
-interface HamburgerMenuProps {
-  className?: string;
-}
-
-export default function HamburgerMenu({
-  className,
-}: HamburgerMenuProps): React.ReactElement {
+export default function HamburgerMenu(): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex flex-col gap-1.5 ${className || ""}`}
+        className="flex flex-col gap-1.5"
         type="button"
         aria-label="Open menu"
       >
