@@ -19,7 +19,7 @@ export default function Header({ className }: HeaderProps): React.ReactElement {
           <div className="col-span-4">
             <Link href={"/"}>
               <Image
-                src={"/image/Vector.png"}
+                src={"https://res.cloudinary.com/dkvbdk078/image/upload/v1745050934/Vector_t5ac7v.png"}
                 width={28}
                 height={48}
                 alt="logo"
