@@ -1,8 +1,7 @@
-
 export default function Home() {
   return (
-    <div>
-      kasra
-    </div>
+    <>
+      <h1>ksara</h1>
+    </>
   );
 }
