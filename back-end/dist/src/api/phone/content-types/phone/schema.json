@@ -1,0 +1,25 @@
+{
+    "kind": "collectionType",
+    "collectionName": "phones",
+    "info": {
+        "singularName": "phone",
+        "pluralName": "phones",
+        "displayName": "Phone"
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "attributes": {
+        "phone": {
+            "type": "string",
+            "required": true,
+            "unique": true,
+            "regex": "(?:(?:\\+|00)\\d{1,4}[\\s-]?)?(?:\\(?\\d{1,4}\\)?[\\s-]?)?[\\d\\s-]{5,15}"
+        },
+        "user": {
+            "type": "relation",
+            "relation": "oneToOne",
+            "target": "plugin::users-permissions.user"
+        }
+    }
+}
