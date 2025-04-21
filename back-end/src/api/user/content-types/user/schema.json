@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "users",
+  "info": {
+    "singularName": "user",
+    "pluralName": "users",
+    "displayName": "User",
+    "description": "Users for verification"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "verificationCode": {
+      "type": "string"
+    },
+    "isVerified": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
