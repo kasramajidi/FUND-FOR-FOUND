@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import { usePathname } from "next/navigation";
-import { AuthProvider } from "@/context/AuthContext";
+import { AuthProvider } from "./../context/AuthContext";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 export const RootLayout = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
-  const hideHeader = pathName === "/Login" || pathName === "/SignUp";
+  const hideHeader = pathName === "/Login" || pathName === "/SignUp" || pathName === "/signup";
 
   return (
     <AuthProvider>
