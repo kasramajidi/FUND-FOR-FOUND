@@ -9,7 +9,7 @@ interface User {
 }
 
 const apiPostEmail = async (user: User) => {
-  const response = await axios.post(`http://localhost:1337/api/register`, {
+  const response = await axios.post(`https://fund-for-found-back-end.onrender.com/api/register`, {
     firstName: user.firstName,
     lastName: user.lastName,
     email: user.email,
