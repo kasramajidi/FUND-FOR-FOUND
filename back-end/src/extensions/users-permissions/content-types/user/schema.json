@@ -64,18 +64,6 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
-    },
-    "firstName": {
-      "type": "string",
-      "required": true,
-      "maxLength": 15,
-      "minLength": 3
-    },
-    "lastName": {
-      "type": "string",
-      "required": true,
-      "maxLength": 20,
-      "minLength": 3
     }
   }
 }
