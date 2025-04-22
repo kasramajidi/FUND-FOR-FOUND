@@ -19,10 +19,10 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
     pathName === "/signup/welcome" ||
     pathName === "/login" ||
     pathName === "/Login" ||
-    pathName === "/login/verification-email"||
-    pathName === "/login/verification-email/verify-code" ||
-    pathName === "/login/verification-email/verify-code/forgot-password";
-    
+    pathName === "/Login/verification-email"||
+    pathName === "/Login/Verification-email/Verify-code" ||
+    pathName === "/Login/Verification-email/Verify-code/forgot-password";
+
   const hideWelcome =
     pathName === "/SignUp/Welcome" || pathName === "/signup/welcome";
   return (
