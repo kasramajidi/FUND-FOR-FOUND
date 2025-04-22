@@ -18,11 +18,12 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
     pathName === "/SignUp/Welcome" ||
     pathName === "/signup/welcome";
 
+    const hideWelcome = pathName === "/SignUp/Welcome" || pathName === "/signup/welcome";
   return (
     <AuthProvider>
       <html lang="en">
         <body>
-          <Header />
+          {!hideWelcome && <Header />}
           {children}
           {!hideHeader && <Footer />}
         </body>
