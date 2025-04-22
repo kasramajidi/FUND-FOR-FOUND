@@ -99,11 +99,6 @@ export default function SignUpForm() {
           <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
         )}
       </div>
-
-      <p className="text-sm text-gray-500 mt-1">
-        We will send you 6 digit code to your email.
-      </p>
-
       <button
         type="submit"
         disabled={isLoading}

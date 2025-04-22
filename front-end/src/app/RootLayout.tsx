@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 
 export const RootLayout = ({ children }: { children: React.ReactNode }) => {
   const pathName = usePathname();
-  const hideHeader = pathName === "/Login" || pathName === "/SignUp" || pathName === "/signup";
+  const hideHeader = pathName === "/SignUp/Verification-email" || pathName === "/SignUp" || pathName === "/signup" ;
 
   return (
     <AuthProvider>
