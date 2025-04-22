@@ -7,8 +7,7 @@ import * as yup from "yup";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import useChangePassword from "@/components/SignUp/Password/useChangePassword";
-import BackButtonP from "@/components/SignUp/Password/BackButtonP";
-
+import BackButtonPF from "@/components/Login/forgot-password/BackButtonPF";
 const passwordSchema = yup.object({
   password: yup
     .string()
@@ -121,7 +120,7 @@ export default function Forgot_password() {
 
   return (
     <div className="bg-gray-50 flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8">
-      <BackButtonP />
+      <BackButtonPF />
       <div className="max-w-md w-full space-y-8 p-6 sm:p-10 z-10">
         <div className="text-center">
           <Image

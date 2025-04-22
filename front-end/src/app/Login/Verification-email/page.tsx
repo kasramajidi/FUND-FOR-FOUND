@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import BackButtonV from "@/components/SignUp/Verification-email/BackButtonV";
+import BackButtonLVE from "@/components/Login/Verification-email/BackButtonLVE";
 import Logo from "./../../../components/SignUp/Logo";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -68,7 +68,7 @@ export default function VerificationEmailPageLogin() {
 
   return (
     <div className="bg-white">
-      <BackButtonV />
+      <BackButtonLVE />
       <div className="px-4 py-8 max-w-[440px] mx-auto">
         <main className="flex flex-col items-center gap-8">
           <h1 className="text-2xl sm:text-3xl text-gray-800 text-center font-medium">

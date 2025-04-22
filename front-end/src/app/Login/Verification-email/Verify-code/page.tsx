@@ -9,7 +9,7 @@ import {
   ClipboardEvent,
 } from "react";
 
-import BackButtonVC from "@/components/SignUp/Verify-code/BackButtonVC";
+import BackButtonLVC from "@/components/Login/Verify-code/BackButtonLVC";
 import Logo from "@/components/SignUp/Logo";
 import { useRouter } from "next/navigation";
 import useSendCode from "@/components/SignUp/Verify-code/useSendCode";
@@ -112,7 +112,7 @@ export default function VerifyCodePageLogin() {
 
   return (
     <div className=" bg-white flex flex-col items-center">
-      <BackButtonVC />
+      <BackButtonLVC />
       <div className="w-full max-w-[440px] px-4 py-8">
         <main className="flex flex-col items-center gap-8 mt-8">
           <h1 className="text-2xl sm:text-3xl text-gray-800 text-center font-medium">
