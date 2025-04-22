@@ -12,11 +12,11 @@ export const RootLayout = ({ children }: { children: React.ReactNode }) => {
     pathName === "/SignUp" ||
     pathName === "/signup" ||
     pathName === "/SignUp/Verify-code" ||
-    pathName === "/SignUp/verify-code" ||
+    pathName === "/signup/verify-code" ||
     pathName === "/SignUp/Password" ||
-    pathName === "/SignUp/password" ||
+    pathName === "/signup/password" ||
     pathName === "/SignUp/Welcome" ||
-    pathName === "/SignUp/welcome";
+    pathName === "/signup/welcome";
 
   return (
     <AuthProvider>
