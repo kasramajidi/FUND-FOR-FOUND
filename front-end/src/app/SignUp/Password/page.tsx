@@ -83,7 +83,7 @@ export default function SetPasswordPage() {
 
   useEffect(() => {
     try {
-      const userDataString = localStorage.getItem("user");
+      const userDataString = localStorage.getItem("userData");
 
       if (userDataString) {
         const userData = JSON.parse(userDataString);

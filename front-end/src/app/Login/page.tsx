@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Google from "./../../components/Google/Google";
+import GoogleRes from "@/components/Google/GoogleRes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 // Eye icon components
@@ -68,14 +69,27 @@ export default function Login() {
 
       // Store JWT and user data
       if (response.data && response.data.jwt) {
-        localStorage.setItem("jwt", response.data.jwt);
+        try {
+          localStorage.setItem("jwt", response.data.jwt);
 
-        if (response.data.user) {
-          localStorage.setItem("userData", JSON.stringify(response.data.user));
+          if (response.data.user) {
+            localStorage.setItem(
+              "userData",
+              JSON.stringify(response.data.user)
+            );
+            console.log("User data stored successfully", response.data.user);
+          }
+
+          // Redirect to dashboard or home
+          router.push("/dashboard");
+        } catch (storageError) {
+          console.error("Error storing data in localStorage:", storageError);
+          setError(
+            "Error saving your login information. Please check your browser settings."
+          );
         }
-
-        // Redirect to dashboard or home
-        router.push("/dashboard");
+      } else {
+        setError("Invalid response from server. Please try again.");
       }
     } catch (err) {
       console.error("Login failed", err);
@@ -86,14 +100,12 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-md w-full space-y-8">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-[#644FC1]">FUND FOR FOUND</h1>
-          <p className="mt-2 text-center text-gray-600">
-            Create an account or sign in to start creating
-          </p>
-          <div className="flex justify-center my-8">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+      {/* Mobile version (shown on small screens) */}
+      <div className="w-full max-w-md px-6 py-8 md:hidden">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl font-bold text-[#644FC1]">FUND FOR FOUND</h1>
+          <div className="flex justify-center my-6">
             <Image
               src="/image/Vectord.svg"
               alt="3F Logo"
@@ -102,122 +114,233 @@ export default function Login() {
               priority
             />
           </div>
+          <p className="text-sm text-gray-700">
+            Create an account or sign in to start creating
+          </p>
         </div>
 
-        <div className="mt-8">
-          <Google />
+        <GoogleRes />
 
-          <div className="mt-6 relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">or</span>
-            </div>
+        <div className="relative w-full text-center my-5">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-200"></div>
+          </div>
+          <div className="relative">
+            <span className="px-3 bg-white text-xs text-gray-500">or</span>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mb-6">
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email address
+            </label>
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#644FC1] focus:border-[#644FC1]"
+              placeholder="yourname@yahoo.com"
+            />
           </div>
 
-          <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Email address
-              </label>
+          <div className="mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <div className="relative">
               <input
-                id="email"
-                name="email"
-                type="text"
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-[#644FC1] focus:border-[#644FC1] focus:z-10 sm:text-sm"
-                placeholder="yourname@yahoo.com"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#644FC1] focus:border-[#644FC1]"
               />
-            </div>
-
-            <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Password
-              </label>
-              <div className="relative">
-                <input
-                  id="password"
-                  name="password"
-                  type={showPassword ? "text" : "password"}
-                  autoComplete="current-password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-[#644FC1] focus:border-[#644FC1] focus:z-10 sm:text-sm"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-                  aria-label={showPassword ? "Hide password" : "Show password"}
-                >
-                  {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
-                </button>
-              </div>
-              <div className="text-left mt-1">
-                <Link
-                  href="/forgot-password"
-                  className="text-sm text-[#644FC1]"
-                >
-                  Forget your password?
-                </Link>
-              </div>
-            </div>
-
-            {error && (
-              <div className="text-red-500 text-sm text-center">{error}</div>
-            )}
-
-            <div>
               <button
-                type="submit"
-                disabled={isLoading}
-                className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#644FC1] hover:bg-[#5342a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#644FC1] ${
-                  isLoading ? "opacity-70 cursor-not-allowed" : ""
-                }`}
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
-                {isLoading ? "Logging in..." : "Continue"}
+                {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
               </button>
             </div>
-          </form>
+          </div>
 
-          <div className="mt-6 flex flex-col items-center">
-            <p className="text-sm text-gray-600">Don&apos;t have one? </p>
-            <Link
-              href="/SignUp"
-              className="font-medium text-[#644FC1] hover:text-[#5342a3]"
-            >
-              <span>Create an account</span>
+          <div className="mb-6">
+            <Link href="/forgot-password" className="text-sm text-[#644FC1]">
+              Forget your password?
             </Link>
           </div>
+
+          {error && (
+            <div className="text-red-500 text-sm text-center mb-4">{error}</div>
+          )}
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className={`w-full py-3 rounded-md bg-[#644FC1] text-white text-sm font-medium ${
+              isLoading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
+          >
+            {isLoading ? "Logging in..." : "Continue"}
+          </button>
+        </form>
+
+        <div className="text-center mb-4">
+          <p className="text-sm text-gray-600 mb-1">Don&apos;t have one?</p>
+          <Link href="/SignUp" className="text-[#644FC1] text-sm font-medium">
+            Create an account
+          </Link>
         </div>
 
-        <div className="mt-8 text-center text-xs text-gray-500">
-          This site is protected by reCAPTCHA and the Google{" "}
-          <Link
-            href="https://policies.google.com/privacy"
-            className="text-[#644FC1]"
-          >
-            Privacy Policy
-          </Link>{" "}
-          and{" "}
-          <Link
-            href="https://policies.google.com/terms"
-            className="text-[#644FC1]"
-          >
-            Terms of Service
-          </Link>{" "}
-          apply.
+        <div className="text-center text-xs text-gray-500">
+          <div className="mb-1">
+            <span>Privacy Policy</span>
+            <span className="mx-2">&</span>
+            <span>Terms of Service</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop version (hidden on small screens) */}
+      <div className="hidden md:flex flex-col items-center justify-center min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-md w-full space-y-8">
+          <div className="text-center">
+            <h1 className="text-4xl font-bold text-[#644FC1]">
+              FUND FOR FOUND
+            </h1>
+            <p className="mt-2 text-center text-gray-600">
+              Create an account or sign in to start creating
+            </p>
+            <div className="flex justify-center my-8">
+              <Image
+                src="/image/Vectord.svg"
+                alt="3F Logo"
+                width={80}
+                height={80}
+                priority
+              />
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <Google />
+
+            <div className="mt-6 relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">or</span>
+              </div>
+            </div>
+
+            <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Email address
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="text"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-[#644FC1] focus:border-[#644FC1] focus:z-10 sm:text-sm"
+                  placeholder="yourname@yahoo.com"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-[#644FC1] focus:border-[#644FC1] focus:z-10 sm:text-sm"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                  >
+                    {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
+                  </button>
+                </div>
+                <div className="text-left mt-1">
+                  <Link
+                    href="/forgot-password"
+                    className="text-sm text-[#644FC1]"
+                  >
+                    Forget your password?
+                  </Link>
+                </div>
+              </div>
+
+              {error && (
+                <div className="text-red-500 text-sm text-center">{error}</div>
+              )}
+
+              <div>
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#644FC1] hover:bg-[#5342a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#644FC1] ${
+                    isLoading ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {isLoading ? "Logging in..." : "Continue"}
+                </button>
+              </div>
+            </form>
+
+            <div className="mt-6 flex flex-col items-center">
+              <p className="text-sm text-gray-600">Don&apos;t have one? </p>
+              <Link
+                href="/SignUp"
+                className="font-medium text-[#644FC1] hover:text-[#5342a3]"
+              >
+                <span>Create an account</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="mt-8 text-center text-xs text-gray-500">
+            This site is protected by reCAPTCHA and the Google{" "}
+            <Link
+              href="https://policies.google.com/privacy"
+              className="text-[#644FC1]"
+            >
+              Privacy Policy
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="https://policies.google.com/terms"
+              className="text-[#644FC1]"
+            >
+              Terms of Service
+            </Link>{" "}
+            apply.
+          </div>
         </div>
       </div>
     </div>
