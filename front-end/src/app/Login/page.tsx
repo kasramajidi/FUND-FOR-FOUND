@@ -81,7 +81,7 @@ export default function Login() {
           }
 
           // Redirect to dashboard or home
-          router.push("/dashboard");
+          router.push("/Brand");
         } catch (storageError) {
           console.error("Error storing data in localStorage:", storageError);
           setError(
@@ -288,7 +288,7 @@ export default function Login() {
                 </div>
                 <div className="text-left mt-1">
                   <Link
-                    href="/forgot-password"
+                    href="/Login/Verification-email"
                     className="text-sm text-[#644FC1]"
                   >
                     Forget your password?

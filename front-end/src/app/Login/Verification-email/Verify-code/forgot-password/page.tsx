@@ -6,8 +6,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import useChangePassword from "../../../components/SignUp/Password/useChangePassword";
-import BackButtonP from "../../../components/SignUp/Password/BackButtonP";
+import useChangePassword from "@/components/SignUp/Password/useChangePassword";
+import BackButtonP from "@/components/SignUp/Password/BackButtonP";
 
 const passwordSchema = yup.object({
   password: yup
@@ -64,7 +64,7 @@ const EyeSlashIcon = () => (
   </svg>
 );
 
-export default function SetPasswordPage() {
+export default function Forgot_password() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -110,7 +110,7 @@ export default function SetPasswordPage() {
       { userId, password: data.password },
       {
         onSuccess: () => {
-          router.push("/SignUp/Welcome");
+          router.push("/Login");
         },
         onError: (error) => {
           console.error("Failed to set password:", error);
@@ -242,3 +242,5 @@ export default function SetPasswordPage() {
     </div>
   );
 }
+
+
