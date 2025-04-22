@@ -1,0 +1,42 @@
+import React from "react";
+
+const Google = () => {
+  return (
+    <button className="group cursor-pointer relative w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
+      <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+        <GoogleIcon />
+      </span>
+      Continue with google
+    </button>
+  );
+};
+
+// Google icon component
+const GoogleIcon = () => (
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 18 18"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M17.64 9.20419C17.64 8.56601 17.5827 7.95237 17.4764 7.36328H9V10.8446H13.8436C13.635 11.9696 13.0009 12.9232 12.0477 13.5614V15.8196H14.9564C16.6582 14.2523 17.64 11.9455 17.64 9.20419Z"
+      fill="#4285F4"
+    />
+    <path
+      d="M9 18C11.43 18 13.4673 17.1941 14.9564 15.8195L12.0477 13.5614C11.2418 14.1014 10.2109 14.4204 9 14.4204C6.65591 14.4204 4.67182 12.8373 3.96409 10.71H0.957273V13.0418C2.43818 15.9832 5.48182 18 9 18Z"
+      fill="#34A853"
+    />
+    <path
+      d="M3.96409 10.71C3.78409 10.17 3.68182 9.59319 3.68182 9C3.68182 8.40682 3.78409 7.83 3.96409 7.29V4.95818H0.957273C0.347727 6.17318 0 7.54773 0 9C0 10.4523 0.347727 11.8268 0.957273 13.0418L3.96409 10.71Z"
+      fill="#FBBC05"
+    />
+    <path
+      d="M9 3.57955C10.3214 3.57955 11.5077 4.03364 12.4405 4.92545L15.0218 2.34409C13.4632 0.891818 11.4259 0 9 0C5.48182 0 2.43818 2.01682 0.957273 4.95818L3.96409 7.29C4.67182 5.16273 6.65591 3.57955 9 3.57955Z"
+      fill="#EA4335"
+    />
+  </svg>
+);
+
+export default Google;
