@@ -167,7 +167,7 @@ export default function Login() {
           </div>
 
           <div className="mb-6">
-            <Link href="/forgot-password" className="text-sm text-[#644FC1]">
+            <Link href="/Login/Verification-email" className="text-sm text-[#644FC1]">
               Forget your password?
             </Link>
           </div>
