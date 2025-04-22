@@ -66,7 +66,7 @@ export default function HamburgerMenu(): React.ReactElement {
           <div className="flex justify-between items-center p-6">
             <Link href="/">
               <Image
-                src="/image/Vector.png"
+                src="https://res.cloudinary.com/dkvbdk078/image/upload/v1745050934/Vector_t5ac7v.png"
                 width={28}
                 height={48}
                 alt="logo"
@@ -75,12 +75,28 @@ export default function HamburgerMenu(): React.ReactElement {
             </Link>
             <div className="flex items-center gap-4">
               <button className="p-2" type="button">
-                <Image
-                  src="/image/VectorIcon.png"
-                  width={20}
-                  height={20}
-                  alt="search"
-                />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M9.16667 15.8333C12.8486 15.8333 15.8333 12.8486 15.8333 9.16667C15.8333 5.48477 12.8486 2.5 9.16667 2.5C5.48477 2.5 2.5 5.48477 2.5 9.16667C2.5 12.8486 5.48477 15.8333 9.16667 15.8333Z"
+                    stroke="#644FC1"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M17.5 17.5L13.875 13.875"
+                    stroke="#644FC1"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>  
               </button>
               <button
                 onClick={() => setIsOpen(false)}
@@ -139,20 +155,24 @@ export default function HamburgerMenu(): React.ReactElement {
 
           {/* Bottom Buttons */}
           <div className="absolute bottom-8 left-6 right-6 space-y-4">
-            <button
-              className="w-full py-3 text-[#644FC1] border border-[#644FC1] rounded-lg"
-              onClick={() => setIsOpen(false)}
-              type="button"
-            >
-              Login/signup
-            </button>
-            <button
-              className="w-full py-3 text-white bg-[#644FC1] rounded-lg"
-              onClick={() => setIsOpen(false)}
-              type="button"
-            >
-              Start
-            </button>
+            <Link href={"/Login"}>
+              <button
+                className="w-full py-3 text-[#644FC1] border border-[#644FC1] rounded-lg"
+                onClick={() => setIsOpen(false)}
+                type="button"
+              >
+                Login/signup
+              </button>
+            </Link>
+            <Link href={"/Brand"}>
+              <button
+                className="w-full py-3 text-white bg-[#644FC1] rounded-lg"
+                onClick={() => setIsOpen(false)}
+                type="button"
+              >
+                Start
+              </button>
+            </Link>
           </div>
         </div>
       )}
