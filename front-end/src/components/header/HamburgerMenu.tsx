@@ -96,7 +96,7 @@ export default function HamburgerMenu(): React.ReactElement {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
-                </svg>  
+                </svg>
               </button>
               <button
                 onClick={() => setIsOpen(false)}
@@ -155,24 +155,20 @@ export default function HamburgerMenu(): React.ReactElement {
 
           {/* Bottom Buttons */}
           <div className="absolute bottom-8 left-6 right-6 space-y-4">
-            <Link href={"/Login"}>
-              <button
-                className="w-full py-3 text-[#644FC1] border border-[#644FC1] rounded-lg"
-                onClick={() => setIsOpen(false)}
-                type="button"
-              >
-                Login/signup
-              </button>
-            </Link>
-            <Link href={"/Brand"}>
-              <button
-                className="w-full py-3 text-white bg-[#644FC1] rounded-lg"
-                onClick={() => setIsOpen(false)}
-                type="button"
-              >
-                Start
-              </button>
-            </Link>
+            <button
+              className="w-full py-3 text-[#644FC1] border border-[#644FC1] rounded-lg"
+              onClick={() => setIsOpen(false)}
+              type="button"
+            >
+              <Link href={"/Login"}>Login/signup</Link>
+            </button>
+            <button
+              className="w-full py-3 text-white bg-[#644FC1] rounded-lg"
+              onClick={() => setIsOpen(false)}
+              type="button"
+            >
+              <Link href={"/Brand"}>Start</Link>
+            </button>
           </div>
         </div>
       )}
