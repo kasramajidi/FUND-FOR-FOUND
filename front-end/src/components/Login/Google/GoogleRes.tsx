@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function GoogleRes() {
   return (
-    <Link href={"/Login/Verification-google"}>
+    <Link href={"/Login/Verification_Login_google"}>
       <button className="w-full flex items-center justify-center py-3 px-4 rounded-md border border-gray-300 bg-white text-gray-700 text-sm mb-4">
         <svg
           className="mr-2"
