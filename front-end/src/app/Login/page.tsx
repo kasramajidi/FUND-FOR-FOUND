@@ -3,8 +3,8 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Google from "./../../components/Google/Google";
-import GoogleRes from "@/components/Google/GoogleRes";
+import Google from "../../components/Login/Google/Google";
+import GoogleRes from "@/components/Login/Google/GoogleRes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 // Eye icon components

@@ -16,6 +16,13 @@ export default function Layout({
 }>) {
   return (
     <QueryClientProvider client={queryClient}>
+      <head>
+        <script
+          src="https://accounts.google.com/gsi/client"
+          async
+          defer
+        ></script>
+      </head>
       <RootLayout>{children}</RootLayout>
     </QueryClientProvider>
   );
