@@ -14,7 +14,7 @@ interface ApiResponse {
 const apiChangePassword = async (data: PasswordData): Promise<ApiResponse> => {
   try {
     const response = await axios.put<ApiResponse>(
-      `https://fund-for-found-back-end.onrender.com/api/users/${data.userId}`,
+      `https://confident-vision-production-f446.up.railway.app/api/users/${data.userId}`,
       {
         password: data.password,
       }
