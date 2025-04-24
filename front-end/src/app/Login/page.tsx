@@ -7,6 +7,7 @@ import Google from "../../components/Login/Google/Google";
 import GoogleRes from "@/components/Login/Google/GoogleRes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 // Eye icon components
 const EyeIcon = () => (
   <svg
@@ -52,6 +53,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const router = useRouter();
+  const { setToken } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,7 +62,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "https://fund-for-found-back-end.onrender.com/api/auth/local",
+        "https://confident-vision-production-f446.up.railway.app/api/auth/local",
         {
           identifier: email,
           password: password,
@@ -70,7 +72,8 @@ export default function Login() {
       // Store JWT and user data
       if (response.data && response.data.jwt) {
         try {
-          localStorage.setItem("jwt", response.data.jwt);
+          // Use the context function to set the token instead of directly using localStorage
+          setToken(response.data.jwt);
 
           if (response.data.user) {
             localStorage.setItem(
@@ -81,7 +84,7 @@ export default function Login() {
           }
 
           // Redirect to dashboard or home
-          router.push("/Brand");
+          router.push("/brand");
         } catch (storageError) {
           console.error("Error storing data in localStorage:", storageError);
           setError(
@@ -167,7 +170,10 @@ export default function Login() {
           </div>
 
           <div className="mb-6">
-            <Link href="/Login/Verification-email" className="text-sm text-[#644FC1]">
+            <Link
+              href="/Login/Verification-email"
+              className="text-sm text-[#644FC1]"
+            >
               Forget your password?
             </Link>
           </div>
@@ -304,7 +310,7 @@ export default function Login() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#644FC1] hover:bg-[#5342a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#644FC1] ${
+                  className={`group relative cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#644FC1] hover:bg-[#5342a3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#644FC1] ${
                     isLoading ? "opacity-70 cursor-not-allowed" : ""
                   }`}
                 >

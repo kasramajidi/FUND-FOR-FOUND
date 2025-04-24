@@ -7,31 +7,72 @@ interface AuthContextType {
   isAuthenticated: boolean;
   setToken: (token: string) => void;
   clearToken: () => void;
+  checkAuth: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+// Create a custom event for auth changes
+export const AUTH_CHANGE_EVENT = "auth-change";
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setTokenState] = useState<string | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    // Check for token on initial load
-    const storedToken = localStorage.getItem("token");
+  // Function to check authentication status from localStorage
+  const checkAuth = () => {
+    const storedToken = localStorage.getItem("jwt");
     if (storedToken) {
       setTokenState(storedToken);
+    } else {
+      setTokenState(null);
     }
+  };
+
+  useEffect(() => {
+    // Check for token on initial load
+    checkAuth();
+
+    // Create an event listener for storage events (when localStorage changes in other tabs)
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key === "jwt") {
+        checkAuth();
+      }
+    };
+
+    // Create an event listener for custom auth change events (within the same tab)
+    const handleAuthChange = () => {
+      checkAuth();
+    };
+
+    // Add event listeners
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener(AUTH_CHANGE_EVENT, handleAuthChange);
+
+    // Clean up event listeners on unmount
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener(AUTH_CHANGE_EVENT, handleAuthChange);
+    };
   }, []);
 
   const setToken = (newToken: string) => {
+    localStorage.setItem("jwt", newToken);
     setTokenState(newToken);
-    localStorage.setItem("token", newToken);
+
+    // Dispatch custom event to notify all components about auth change
+    window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
   };
 
   const clearToken = () => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("userData");
     setTokenState(null);
-    localStorage.removeItem("token");
-    router.push("/login");
+
+    // Dispatch custom event to notify all components about auth change
+    window.dispatchEvent(new Event(AUTH_CHANGE_EVENT));
+
+    router.push("/Login");
   };
 
   return (
@@ -41,6 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         isAuthenticated: !!token,
         setToken,
         clearToken,
+        checkAuth,
       }}
     >
       {children}

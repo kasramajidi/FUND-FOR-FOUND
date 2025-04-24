@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 interface GoogleResponse {
   credential?: string;
@@ -58,6 +59,7 @@ export default function Verification_SignUp_google() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+  const { setToken } = useAuth();
 
   // Function to decode JWT token from Google
   const decodeJwt = (token: string): GoogleJwtPayload => {
@@ -124,10 +126,13 @@ export default function Verification_SignUp_google() {
         })
       )}.DEVELOPMENT_SIGNATURE`;
 
+      // Store user data in localStorage
       localStorage.setItem("userData", JSON.stringify(user));
-      localStorage.setItem("jwt", token);
 
-      console.log("Login successful with email:", user.email);
+      // Use context to set token instead of directly using localStorage
+      setToken(token);
+
+      console.log("Signup successful with email:", user.email);
       router.push("/brand");
     } catch (error) {
       console.error("Authentication error:", error);

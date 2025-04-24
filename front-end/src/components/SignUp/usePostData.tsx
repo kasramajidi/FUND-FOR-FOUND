@@ -1,6 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 interface User {
   firstName: string;
@@ -36,17 +37,31 @@ const apiPostEmail = async (user: User): Promise<ApiResponse> => {
 
 export default function usePostData() {
   const router = useRouter();
+  const { setToken } = useAuth();
 
   return useMutation<ApiResponse, Error, User>({
     mutationFn: apiPostEmail,
-    onSuccess: (data) => {
+    onSuccess: (data, variables) => {
       // Check if data and necessary fields exist
       if (data && data.jwt && data.user) {
         try {
-          // Store JWT and user data in localStorage
-          localStorage.setItem("jwt", data.jwt);
-          localStorage.setItem("userData", JSON.stringify(data.user));
-          console.log("User data and JWT stored in localStorage.");
+          // Store JWT using context function
+          setToken(data.jwt);
+
+          // Create user data object with all required fields
+          const userData = {
+            id: data.user.id,
+            email: data.user.email,
+            firstName: variables.firstName,
+            lastName: variables.lastName,
+            username: `${variables.firstName} ${variables.lastName}`,
+          };
+
+          // Store the complete user data
+          localStorage.setItem("userData", JSON.stringify(userData));
+
+          // Log the stored data for verification
+          console.log("Stored user data:", userData);
         } catch (error) {
           console.error("Error storing data in localStorage:", error);
           // Handle potential storage errors (e.g., storage full)

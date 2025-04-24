@@ -39,7 +39,7 @@ export default function Welcome() {
             Go homepage
           </Link>
           <Link
-            href="/Login"
+            href="/brand"
             className="bg-[#644FC1] text-white py-1.5 px-4 rounded-md text-sm hover:bg-[#5342a3] transition-colors"
           >
             Start project

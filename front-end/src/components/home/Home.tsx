@@ -40,8 +40,8 @@ const Home: FC = () => {
         </div>
         <div className="flex flex-col justify-center items-center gap-2">
           {isAuthenticated ? (
-            <Link href={"/Brand"}>
-              <button className="bg-[#644FC1] text-white px-4 py-2 rounded-lg cursor-pointer">
+            <Link href={"/brand"}>
+              <button className="bg-[#644FC1] hover:bg-[#644FF1] text-white w-[259px] py-2 rounded-lg cursor-pointer">
                 Start
               </button>
             </Link>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-
+import { useAuth } from "@/context/AuthContext";
 interface MenuItem {
   name: string;
   link: string;
@@ -31,8 +31,47 @@ const dataPage: MenuItem[] = [
   },
 ];
 
+const dataPageAuthenticated: MenuItem[] = [
+  {
+    name: "Explore",
+    link: "/Explore",
+    hasArrow: true,
+  },
+  {
+    name: "Home",
+    link: "/",
+    hasArrow: true,
+  },
+  {
+    name: "profile",
+    link: "/profile",
+    hasArrow: false,
+  },
+  {
+    name: "settings",
+    link: "/",
+    hasArrow: false,
+  },
+  {
+    name: "About us",
+    link: "/AboutUs",
+    hasArrow: false,
+  },
+  {
+    name: "Help & Support",
+    link: "/Help&Support",
+    hasArrow: false,
+  },
+];
+
 export default function HamburgerMenu(): React.ReactElement {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { isAuthenticated, clearToken } = useAuth();
+
+  const handleLogout = (): void => {
+    localStorage.removeItem("userData");
+    clearToken();
+  };
 
   return (
     <>
@@ -124,51 +163,101 @@ export default function HamburgerMenu(): React.ReactElement {
 
           {/* Menu Items */}
           <div className="px-6 pt-8">
-            {dataPage.map((item, index) => (
-              <Link
-                key={index}
-                href={item.link}
-                className="flex justify-between items-center py-4 text-[#644FC1] text-xl font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                {item.name}
-                {item.hasArrow && (
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+            {isAuthenticated
+              ? dataPageAuthenticated.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.link}
+                    className="flex justify-between items-center py-4 text-[#644FC1] text-xl font-medium"
+                    onClick={() => setIsOpen(false)}
                   >
-                    <path
-                      d="M9 18L15 12L9 6"
-                      stroke="#644FC1"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                )}
-              </Link>
-            ))}
+                    {item.name}
+                    {item.hasArrow && (
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 18L15 12L9 6"
+                          stroke="#644FC1"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </Link>
+                ))
+              : dataPage.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.link}
+                    className="flex justify-between items-center py-4 text-[#644FC1] text-xl font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                    {item.hasArrow && (
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M9 18L15 12L9 6"
+                          stroke="#644FC1"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    )}
+                  </Link>
+                ))}
           </div>
 
           {/* Bottom Buttons */}
           <div className="absolute bottom-8 left-6 right-6 space-y-4">
-            <button
-              className="w-full py-3 text-[#644FC1] border border-[#644FC1] rounded-lg"
-              onClick={() => setIsOpen(false)}
-              type="button"
-            >
-              <Link href={"/Login"}>Login/signup</Link>
-            </button>
-            <button
-              className="w-full py-3 text-white bg-[#644FC1] rounded-lg"
-              onClick={() => setIsOpen(false)}
-              type="button"
-            >
-              <Link href={"/Brand"}>Start</Link>
-            </button>
+            {isAuthenticated ? (
+              <>
+                <button
+                  className="w-full py-3 text-[#644FC1] border border-[#644FC1] rounded-lg"
+                  onClick={() => setIsOpen(false)}
+                  type="button"
+                >
+                  <span onClick={handleLogout}>Logout</span>
+                </button>
+                <button
+                  className="w-full py-3 text-white bg-[#644FC1] rounded-lg"
+                  onClick={() => setIsOpen(false)}
+                  type="button"
+                >
+                  <Link href={"/Brand"}>Start</Link>
+                </button>
+              </>
+            ) : (
+              <>
+                {" "}
+                <button
+                  className="w-full py-3 text-[#644FC1] border border-[#644FC1] rounded-lg"
+                  onClick={() => setIsOpen(false)}
+                  type="button"
+                >
+                  <Link href={"/Login"}>Login/signup</Link>
+                </button>
+                <button
+                  className="w-full py-3 text-white bg-[#644FC1] rounded-lg"
+                  onClick={() => setIsOpen(false)}
+                  type="button"
+                >
+                  <Link href={"/Brand"}>Start</Link>
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
