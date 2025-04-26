@@ -23,6 +23,12 @@
     "isVerified": {
       "type": "boolean",
       "default": false
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::brand.brand",
+      "mappedBy": "user"
     }
   }
 }

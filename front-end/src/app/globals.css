@@ -29,3 +29,8 @@ body {
   color: var(--foreground);
   font-family: Inter;
 }
+
+
+.codex-editor__redactor {
+  padding-bottom: 0 !important;
+}

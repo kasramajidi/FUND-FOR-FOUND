@@ -1,7 +1,11 @@
-import React from 'react'
-
+"use client"
+import NavbarBaner from '@/components/baner/part-one/NavbarBaner'
+import FormBrand from '@/components/baner/part-one/FormBrand'
 export default function Brand() {
   return (
-    <div>page</div>
+    <div>
+      <NavbarBaner/>
+      <FormBrand/>
+    </div>
   )
 }
