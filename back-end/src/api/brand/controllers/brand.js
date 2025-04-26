@@ -24,4 +24,9 @@ module.exports = {
         const { id } = ctx.params;
         return await strapi.entityService.delete('api::brand.brand', id);
     },
+    async create(ctx) {
+        return await strapi.entityService.create('api::brand.brand', {
+            data: ctx.request.body.data,
+        });
+    },
 };

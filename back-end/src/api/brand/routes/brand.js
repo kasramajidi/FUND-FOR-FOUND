@@ -40,5 +40,13 @@ module.exports = {
                 policies: [],
             },
         },
+        {
+            method: 'POST',
+            path: '/brands',
+            handler: 'brand.create',
+            config: {
+                policies: [],
+            },
+        },
     ],
 };
