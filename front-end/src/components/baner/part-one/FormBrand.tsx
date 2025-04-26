@@ -67,9 +67,12 @@ export default function FormBrand() {
         tag: data.tags,
       });
 
-      if (result.data.id) {
+      if (result && result.data && result.data.id) {
         localStorage.setItem("brandId", result.data.id.toString());
         router.push("/brand/part-two");
+      } else {
+        alert("خطا در ثبت برند! لطفاً دوباره تلاش کنید.");
+        console.error("API response missing id:", result);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
