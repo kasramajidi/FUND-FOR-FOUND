@@ -22,7 +22,6 @@ export interface BrandResponse {
     };
   };
   id?: number;
-  [key: string]: any;
 }
 
 const postApiBrand = async (user: Brand): Promise<BrandResponse> => {
