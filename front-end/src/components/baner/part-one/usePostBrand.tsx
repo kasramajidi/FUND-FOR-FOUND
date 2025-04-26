@@ -11,9 +11,9 @@ export interface Brand {
 }
 
 export interface BrandResponse {
-  data: {
+  data?: {
     id: number;
-    attributes: {
+    attributes?: {
       brand: string;
       country: string;
       category: string;
@@ -21,6 +21,8 @@ export interface BrandResponse {
       tag: string[];
     };
   };
+  id?: number;
+  [key: string]: any;
 }
 
 const postApiBrand = async (user: Brand): Promise<BrandResponse> => {
