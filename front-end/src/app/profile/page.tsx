@@ -1,6 +1,6 @@
 
 export default function Profile() {
   return (
-    <div>page</div>
+    <div>ff</div>
   )
 }

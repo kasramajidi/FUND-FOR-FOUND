@@ -229,26 +229,20 @@
     "description": {
       "type": "richtext"
     },
-    "communications": {
-      "type": "enumeration",
-      "enum": [
-        "Ex: ",
-        "Website",
-        "YouTube",
-        "Instagram",
-        "twitter",
-        "Discard",
-        "Whatsapp",
-        "Telegram",
-        "Facebook",
-        "Linkedin"
-      ]
+    "cover": {
+      "type": "string"
+    },
+    "pictureProfile": {
+      "type": "string"
     },
     "user": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToOne",
       "target": "api::user.user",
-      "inversedBy": "brand"
+      "inversedBy": "brands"
+    },
+    "Communication": {
+      "type": "json"
     }
   }
 }

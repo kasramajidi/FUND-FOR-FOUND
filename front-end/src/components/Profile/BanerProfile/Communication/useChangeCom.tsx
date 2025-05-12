@@ -11,7 +11,6 @@ interface CommunicationItem {
 
 interface IDData {
   brandId: number;
-  description: string;
   Communication: CommunicationItem[];
 }
 
@@ -19,7 +18,6 @@ interface ApiResponse {
   data: {
     id: number;
     attributes: {
-      description: string;
       Communication: CommunicationItem[];
       updatedAt: string;
     };
@@ -35,7 +33,6 @@ const apiUpdateBrand = async (data: IDData): Promise<ApiResponse> => {
     const url = `http://localhost:1337/api/brands/${data.brandId}`;
     const payload = {
       data: {
-        description: data.description,
         Communication: data.Communication,
       },
     };
@@ -52,7 +49,7 @@ const apiUpdateBrand = async (data: IDData): Promise<ApiResponse> => {
   }
 };
 
-export default function useUpdateBrand() {
+export default function useChangeCom() {
   return useMutation({
     mutationFn: apiUpdateBrand,
     onError: (error: Error) => {

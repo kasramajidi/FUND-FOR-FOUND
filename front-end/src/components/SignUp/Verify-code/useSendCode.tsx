@@ -14,7 +14,7 @@ interface ApiResponse {
 const apiPostEmail = async (user: User): Promise<ApiResponse> => {
   try {
     const response = await axios.post<ApiResponse>(
-      "https://confident-vision-production-f446.up.railway.app/api/email/verify-code",
+      "http://localhost:1337/api/email/verify-code",
       {
         email: user.email,
         code: user.code,

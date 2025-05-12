@@ -39,7 +39,7 @@ const postApiBrand = async (user: Brand): Promise<BrandResponse> => {
   });
 
   const response = await axios.post(
-    "https://confident-vision-production-f446.up.railway.app/api/brands",
+    "http://localhost:1337/api/brands",
     {
       data: {
         brand: user.brand,

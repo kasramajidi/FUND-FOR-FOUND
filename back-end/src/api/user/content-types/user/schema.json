@@ -24,9 +24,9 @@
       "type": "boolean",
       "default": false
     },
-    "brand": {
+    "brands": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "oneToMany",
       "target": "api::brand.brand",
       "mappedBy": "user"
     }

@@ -484,20 +484,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
   attributes: {
     brand: Schema.Attribute.String;
     category: Schema.Attribute.String;
-    communications: Schema.Attribute.Enumeration<
-      [
-        'Ex: ',
-        'Website',
-        'YouTube',
-        'Instagram',
-        'twitter',
-        'Discard',
-        'Whatsapp',
-        'Telegram',
-        'Facebook',
-        'Linkedin',
-      ]
-    >;
+    Communication: Schema.Attribute.JSON;
     country: Schema.Attribute.Enumeration<
       [
         'EX:',
@@ -697,6 +684,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
         'Zimbabwe',
       ]
     >;
+    cover: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -704,6 +692,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::brand.brand'> &
       Schema.Attribute.Private;
+    pictureProfile: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     subcategory: Schema.Attribute.String;
     tag: Schema.Attribute.JSON;
@@ -711,7 +700,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    user: Schema.Attribute.Relation<'oneToOne', 'api::user.user'>;
+    user: Schema.Attribute.Relation<'manyToOne', 'api::user.user'>;
   };
 }
 
@@ -825,7 +814,7 @@ export interface ApiUserUser extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
-    brand: Schema.Attribute.Relation<'oneToOne', 'api::brand.brand'>;
+    brands: Schema.Attribute.Relation<'oneToMany', 'api::brand.brand'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

@@ -21,21 +21,21 @@ export default function Part_Two() {
     const brandIdNum = Number(brandId);
     const descriptionStr =
       description?.blocks?.map((b) => b.data.text).join(" ") || "";
-    const communicationsStr = socialLinks[0]?.type?.value || "";
-    console.log("DEBUG SUBMIT", {
-      brandId: brandIdNum,
-      description: descriptionStr,
-      communications: communicationsStr,
-    });
+    const communicationsArr = socialLinks.map((s) => ({
+      label: s.type?.label,
+      value: s.type?.value,
+      icon: s.type?.icon,
+      placeholder: s.type?.placeholder,
+      input: s.url,
+    }));
     updateBrand.mutate(
       {
         brandId: brandIdNum,
         description: descriptionStr,
-        communications: communicationsStr,
+        Communication: communicationsArr,
       },
       {
         onSuccess: () => {
-          localStorage.removeItem("brandId");
           router.push("/brand/part-three");
         },
       }

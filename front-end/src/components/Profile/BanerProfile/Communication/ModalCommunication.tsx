@@ -9,12 +9,42 @@ import {
   FaTelegram,
   FaFacebook,
   FaLinkedin,
-  FaTimes,
   FaChevronDown,
   FaChevronUp,
+  FaTimes,
 } from "react-icons/fa";
+import useChangeCom from "./useChangeCom";
+interface SocialType {
+  label: string;
+  value: string;
+  icons: React.ReactNode;
+  icon: string;
+  placeholder: string;
+}
 
-const SOCIALS = [
+interface SocialLink {
+  type: SocialType;
+  url: string;
+}
+
+interface CommunicationItem {
+  label: string;
+  value: string;
+  icon: string;
+  placeholder: string;
+  input: string;
+}
+
+interface ModalCommunicationProps {
+  data: {
+    Communication?: CommunicationItem[];
+  };
+  onClose: () => void;
+  brandId: number;
+  onRefresh: () => void;
+}
+
+const SOCIALS: SocialType[] = [
   {
     label: "Website",
     value: "Website",
@@ -78,26 +108,26 @@ const SOCIALS = [
     icon: "FaLinkedin",
     placeholder: "https://linkedin.com/in/yourusername",
   },
-] as const;
+];
 
-type SocialType = (typeof SOCIALS)[number];
-type SocialLink = {
-  type: SocialType;
-  url: string;
-};
+export default function ModalCommunication({
+  data,
+  brandId,
+  onClose,
+  onRefresh,
+}: ModalCommunicationProps) {
+  const initialLinks: SocialLink[] = Array.isArray(data?.Communication)
+    ? data.Communication.map((item) => ({
+        type: SOCIALS.find((s) => s.icon === item.icon) || SOCIALS[0],
+        url: item.input || "",
+      }))
+    : [{ type: SOCIALS[0], url: "" }];
 
-interface SocialMediaProps {
-  onChange?: (links: SocialLink[]) => void;
-}
-
-export default function SocialMedia({ onChange }: SocialMediaProps) {
-  const [links, setLinks] = useState<SocialLink[]>([
-    { type: SOCIALS[0], url: "" },
-  ]);
+  const { mutate: changeCom } = useChangeCom();
+  const [links, setLinks] = useState<SocialLink[]>(initialLinks);
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
-  const dropdownRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const dropdownRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Close dropdown on outside click
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (
@@ -132,21 +162,38 @@ export default function SocialMedia({ onChange }: SocialMediaProps) {
     setLinks([...links, { type: SOCIALS[0], url: "" }]);
   };
 
-  useEffect(() => {
-    if (onChange) {
-      onChange(links);
-    }
-  }, [links]);
+  const handleSave = () => {
+    const prepared = links.map((s) => ({
+      label: s.type.label,
+      value: s.type.value,
+      icon: s.type.icon,
+      placeholder: s.type.placeholder,
+      input: s.url,
+    }));
+    changeCom(
+      { brandId, Communication: prepared },
+      {
+        onSuccess: () => {
+          onRefresh();
+        },
+      }
+    );
+  };
 
   return (
-    <div className="w-full max-w-[200px] lg:max-w-2xl mx-auto flex flex-col gap-4 mt-8">
+    <div className="w-full max-w-2xl mx-auto flex flex-col gap-4 mt-8">
       {links.map((item, idx) => (
         <div
           key={idx}
-          className="relative flex flex-col w-full gap-0 mb-6 lg:flex-row lg:items-center lg:gap-2 lg:mb-0"
+          className="relative flex  gap-5 flex-col w-full mb-6 lg:flex-row lg:items-center lg:gap-2 lg:mb-0"
         >
           {/* Custom Dropdown */}
-          <div className="w-full mb-2 lg:w-40 lg:mb-0">
+          <div
+            className="w-full mb-2 lg:w-40 lg:mb-0"
+            ref={(el) => {
+              dropdownRefs.current[idx] = el;
+            }}
+          >
             <button
               type="button"
               className="w-full flex items-center justify-between border cursor-pointer border-[rgba(141,117,247,1)] rounded-lg px-4 py-2 bg-white focus:outline-none"
@@ -186,7 +233,7 @@ export default function SocialMedia({ onChange }: SocialMediaProps) {
           />
           {/* Remove button */}
           <button
-            className="absolute top-16 -right-7 text-gray-400 cursor-pointer hover:text-red-500 transition-colors lg:static lg:ml-2"
+            className="absolute lg:top-2 top-12 lg:right-2 right-0 text-gray-400 cursor-pointer hover:text-red-500 transition-colors lg:static lg:ml-2"
             onClick={() => handleRemove(idx)}
             aria-label="Remove"
             type="button"
@@ -201,6 +248,18 @@ export default function SocialMedia({ onChange }: SocialMediaProps) {
         onClick={handleAdd}
       >
         + Add social link
+      </button>
+      <button
+        className="w-full mt-4 px-[65px] py-2 self-center cursor-pointer rounded bg-[rgba(100,79,193,1)] hover:bg-[rgba(100,79,193,0.8)] text-white font-bold lg:w-fit"
+        onClick={handleSave}
+      >
+        Save
+      </button>
+      <button
+        className="lg:self-start self-center lg:w-[119px] w-full rounded-lg hover:bg-[rgba(100,79,193,0.8)] cursor-pointer bg-[rgba(100,79,193,1)] text-white px-6 py-2"
+        onClick={onClose}
+      >
+        continue
       </button>
     </div>
   );
