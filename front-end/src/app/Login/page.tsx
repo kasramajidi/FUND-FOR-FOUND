@@ -62,7 +62,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "https://confident-vision-production-f446.up.railway.app/api/auth/local",
+        "http://localhost:1337/api/auth/local",
         {
           identifier: email,
           password: password,

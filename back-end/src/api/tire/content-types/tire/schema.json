@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tires",
+  "info": {
+    "singularName": "tire",
+    "pluralName": "tires",
+    "displayName": "Tire",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "discription": {
+      "type": "text"
+    },
+    "amount": {
+      "type": "string"
+    },
+    "tirCover": {
+      "type": "string"
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::brand.brand",
+      "inversedBy": "tires"
+    }
+  }
+}

@@ -227,13 +227,19 @@
       "type": "boolean"
     },
     "description": {
-      "type": "richtext"
+      "type": "text"
     },
     "cover": {
-      "type": "string"
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     },
     "pictureProfile": {
-      "type": "string"
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
     },
     "user": {
       "type": "relation",
@@ -243,6 +249,18 @@
     },
     "Communication": {
       "type": "json"
+    },
+    "authUser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "brands"
+    },
+    "tires": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tire.tire",
+      "mappedBy": "brand"
     }
   }
 }
