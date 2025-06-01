@@ -233,13 +233,17 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "pictureProfile": {
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": ["images"]
+      "allowedTypes": [
+        "images"
+      ]
     },
     "user": {
       "type": "relation",
@@ -260,6 +264,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::tire.tire",
+      "mappedBy": "brand"
+    },
+    "about_brand": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::about-brand.about-brand",
       "mappedBy": "brand"
     }
   }

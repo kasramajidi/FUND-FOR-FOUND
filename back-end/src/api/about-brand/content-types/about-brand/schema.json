@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "about_brands",
+  "info": {
+    "singularName": "about-brand",
+    "pluralName": "about-brands",
+    "displayName": "AboutBrand",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "picture": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "brand": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::brand.brand",
+      "inversedBy": "about_brand"
+    }
+  }
+}
