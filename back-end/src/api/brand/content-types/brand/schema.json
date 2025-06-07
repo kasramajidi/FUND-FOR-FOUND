@@ -271,6 +271,12 @@
       "relation": "oneToOne",
       "target": "api::about-brand.about-brand",
       "mappedBy": "brand"
+    },
+    "team": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::team.team",
+      "mappedBy": "brand"
     }
   }
 }

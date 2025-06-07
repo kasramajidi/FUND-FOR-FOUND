@@ -10,7 +10,7 @@ module.exports = {
     async find(ctx) {
         const brands = await strapi.entityService.findMany('api::brand.brand', {
             ...ctx.query,
-            populate: ['about_brand', 'tires', 'user', 'authUser', 'cover', 'pictureProfile']
+            populate: ['about_brand', 'tires', 'user',"team", 'authUser', 'cover', 'pictureProfile']
         });
         return brands;
     },
@@ -18,7 +18,7 @@ module.exports = {
         const { id } = ctx.params;
         const brand = await strapi.entityService.findOne('api::brand.brand', id, {
             ...ctx.query,
-            populate: ['about_brand', 'tires', 'user', 'authUser', 'cover', 'pictureProfile']
+            populate: ['about_brand', 'tires', "team", 'user', 'authUser', 'cover', 'pictureProfile']
         });
         return brand;
     },

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import ContributionTier from "./ContributionTier/ContributionTier";
 import About from "./About/About";
+import Team from "./Team/Team";
 const Menu = [
   {
     title: "Contribution Tier",
@@ -84,7 +85,8 @@ export default function MenuProfile() {
       {/* Content */}
       <div className="mt-28 max-w-5xl mx-auto">
         {active === 0 && <ContributionTier />}
-        <About/>
+        <About />
+        <Team />
       </div>
     </>
   );

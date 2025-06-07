@@ -735,6 +735,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     subcategory: Schema.Attribute.String;
     tag: Schema.Attribute.JSON;
+    team: Schema.Attribute.Relation<'oneToOne', 'api::team.team'>;
     termsOfService: Schema.Attribute.Boolean;
     tires: Schema.Attribute.Relation<'oneToMany', 'api::tire.tire'>;
     updatedAt: Schema.Attribute.DateTime;
@@ -808,6 +809,35 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiIndividualIndividual extends Struct.CollectionTypeSchema {
+  collectionName: 'individuals';
+  info: {
+    displayName: 'individual';
+    pluralName: 'individuals';
+    singularName: 'individual';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cover: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::individual.individual'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiRegisterRegister extends Struct.CollectionTypeSchema {
   collectionName: 'registers';
   info: {
@@ -836,6 +866,35 @@ export interface ApiRegisterRegister extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTeamTeam extends Struct.CollectionTypeSchema {
+  collectionName: 'teams';
+  info: {
+    displayName: 'Team';
+    pluralName: 'teams';
+    singularName: 'team';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    brand: Schema.Attribute.Relation<'oneToOne', 'api::brand.brand'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    discription: Schema.Attribute.Text;
+    email: Schema.Attribute.Email;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::team.team'> &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    role: Schema.Attribute.Enumeration<['Admin', 'Teammate']>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1419,7 +1478,9 @@ declare module '@strapi/strapi' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::global.global': ApiGlobalGlobal;
+      'api::individual.individual': ApiIndividualIndividual;
       'api::register.register': ApiRegisterRegister;
+      'api::team.team': ApiTeamTeam;
       'api::tire.tire': ApiTireTire;
       'api::user.user': ApiUserUser;
       'plugin::content-releases.release': PluginContentReleasesRelease;
