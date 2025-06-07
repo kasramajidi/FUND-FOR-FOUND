@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import ContributionTier from "./ContributionTier/ContributionTier";
 import About from "./About/About";
 import Team from "./Team/Team";
+import Individual from "./Individual/Individual";
 const Menu = [
   {
     title: "Contribution Tier",
@@ -87,6 +88,7 @@ export default function MenuProfile() {
         {active === 0 && <ContributionTier />}
         <About />
         <Team />
+        <Individual />
       </div>
     </>
   );
