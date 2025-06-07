@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import useGetIndividual from "./useGetIndividual";
-import useGetBrand from "@/components/baner/Part-two/useGetBrand";
 export default function Individual() {
   const defaultIndividuals = [
     { name: "Nasim shahbazi" },
