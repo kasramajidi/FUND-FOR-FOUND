@@ -4,6 +4,7 @@ import ContributionTier from "./ContributionTier/ContributionTier";
 import About from "./About/About";
 import Team from "./Team/Team";
 import Individual from "./Individual/Individual";
+import Update from "./Update/Update";
 import FAQ from "./FAQ/FAQ";
 const Menu = [
   {
@@ -91,6 +92,7 @@ export default function MenuProfile() {
         <Team />
         <Individual />
         <FAQ />
+        <Update />
       </div>
     </>
   );

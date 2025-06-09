@@ -20,7 +20,7 @@ export default function Team() {
     <div className="flex flex-col items-start gap-12 mt-28 max-lg:gap-6 max-lg:mt-16 w-full px-4 md:px-6 lg:px-0">
       <div className="flex items-center gap-3 max-lg:gap-2">
         <div className="w-3 h-3 bg-[rgba(100,79,193,1)] max-lg:w-2 max-lg:h-2"></div>
-        <span className="font-bold text-2xl max-lg:text-lg">About</span>
+        <span className="font-bold text-2xl max-lg:text-lg">Team</span>
       </div>
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {(!teams || teams.length === 0) && (
