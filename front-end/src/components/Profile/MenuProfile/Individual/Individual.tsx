@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useGetIndividual from "./useGetIndividual";
+
 export default function Individual() {
   const defaultIndividuals = [
     { name: "Nasim shahbazi" },
@@ -9,10 +10,10 @@ export default function Individual() {
     { name: "Ali Ahmadi" },
   ];
 
-  const { data } = useGetIndividual();
+  const { data, error } = useGetIndividual();
 
   let apiIndividuals = [];
-  if (data && Array.isArray(data.data) && data.data.length > 0) {
+  if (!error && data && Array.isArray(data.data) && data.data.length > 0) {
     apiIndividuals = data.data.map((item) => ({
       name: item.attributes?.name || "No Name",
     }));

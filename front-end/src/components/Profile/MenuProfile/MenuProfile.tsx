@@ -4,6 +4,7 @@ import ContributionTier from "./ContributionTier/ContributionTier";
 import About from "./About/About";
 import Team from "./Team/Team";
 import Individual from "./Individual/Individual";
+import FAQ from "./FAQ/FAQ";
 const Menu = [
   {
     title: "Contribution Tier",
@@ -89,6 +90,7 @@ export default function MenuProfile() {
         <About />
         <Team />
         <Individual />
+        <FAQ />
       </div>
     </>
   );
