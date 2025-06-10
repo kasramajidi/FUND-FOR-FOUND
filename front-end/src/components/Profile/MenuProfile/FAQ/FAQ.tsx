@@ -12,7 +12,7 @@ interface FAQItem {
 }
 
 export default function FAQ() {
-  const [open, setOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [createFAQ, setCreateFAQ] = useState(false);
   const [editFAQ, setEditFAQ] = useState(false);
   const [selectedFAQ, setSelectedFAQ] = useState<FAQItem | null>(null);
@@ -30,13 +30,17 @@ export default function FAQ() {
         <div className="w-3 h-3 bg-[rgba(100,79,193,1)] max-lg:w-2 max-lg:h-2"></div>
         <span className="font-bold text-2xl max-lg:text-lg uppercase">faq</span>
       </div>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col gap-5 w-full">
         {data?.data?.length ? (
           data.data.map((item) => (
             <div key={item.documentId}>
               <div
                 className="flex w-full items-center gap-3 cursor-pointer max-sm:gap-2"
-                onClick={() => setOpen((prev) => !prev)}
+                onClick={() =>
+                  setOpenIndex(
+                    openIndex === item.documentId ? null : item.documentId
+                  )
+                }
               >
                 <div className="flex-1 relative">
                   <input
@@ -47,7 +51,7 @@ export default function FAQ() {
                     style={{ cursor: "pointer" }}
                   />
                   <span className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center pointer-events-none">
-                    {open ? (
+                    {openIndex === item.documentId ? (
                       <FiChevronUp className="text-2xl text-gray-400 transition-transform duration-200 max-sm:text-xl" />
                     ) : (
                       <FiChevronDown className="text-2xl text-gray-400 transition-transform duration-200 max-sm:text-xl" />
@@ -63,7 +67,7 @@ export default function FAQ() {
                   <MdEdit className="text-[rgba(113,113,113,1)] text-3xl max-sm:text-2xl" />
                 </button>
               </div>
-              {open && (
+              {openIndex === item.documentId && (
                 <div className="w-full mt-6 bg-white rounded-lg shadow-lg px-8 py-6 text-[rgba(113,113,113,1)] text-lg max-sm:px-4 max-sm:py-4 max-sm:text-base">
                   {item.answer}
                 </div>
