@@ -70,6 +70,9 @@
       "relation": "oneToMany",
       "target": "api::brand.brand",
       "mappedBy": "authUser"
+    },
+    "cover": {
+      "type": "string"
     }
   }
 }

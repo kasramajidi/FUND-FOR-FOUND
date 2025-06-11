@@ -1,6 +1,10 @@
-
+import Baner from "@/components/Profile/Profile/Baner/Baner"
+import MenuP from "@/components/Profile/Profile/Menu/MenuP"
 export default function Profile() {
   return (
-    <div>ff</div>
+    <div>
+      <Baner/>
+      <MenuP/>
+    </div>
   )
 }

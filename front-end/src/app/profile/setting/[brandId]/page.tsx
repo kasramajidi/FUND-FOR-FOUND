@@ -20,10 +20,10 @@ const sections = {
   Info: <Info />,
   "Contribution tiers": <ContributionTiers />,
   About: <About />,
-  Team: <TeamS/>,
-  Updates: <UpdateS/>,
+  Team: <TeamS />,
+  Updates: <UpdateS />,
   Expenses: <div>Expenses section</div>,
-  "Pay out": <Pay/> ,
+  "Pay out": <Pay />,
 };
 
 export default function Page() {

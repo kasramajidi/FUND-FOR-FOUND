@@ -1451,6 +1451,7 @@ export interface PluginUsersPermissionsUser
     brands: Schema.Attribute.Relation<'oneToMany', 'api::brand.brand'>;
     confirmationToken: Schema.Attribute.String & Schema.Attribute.Private;
     confirmed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    cover: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
