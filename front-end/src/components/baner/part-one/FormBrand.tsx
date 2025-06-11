@@ -70,7 +70,7 @@ export default function FormBrand() {
       const id = result?.data?.id ?? result?.id;
       if (id) {
         localStorage.setItem("brandId", String(id));
-        router.push("/brand/part-two");
+        router.push("/Brand/part-two");
       } else {
         alert("خطا در ثبت برند! لطفاً دوباره تلاش کنید.");
         console.error("API response missing id:", result);

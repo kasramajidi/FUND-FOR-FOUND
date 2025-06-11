@@ -2,11 +2,10 @@
 import React, { useRef, useState, useEffect } from "react";
 import ContributionTier from "./ContributionTier/ContributionTier";
 import About from "./About/About";
-import Team from "./Team/Team";
+import TeamAll from "./Team/TeamAll";
 import Individual from "./Individual/Individual";
-import Update from "./Update/Update";
 import FAQ from "./FAQ/FAQ";
-
+import UpdateAll from "./Update/UpdateAll";
 const Menu = [
   { title: "Contribution Tier", id: "contribution-tier" },
   { title: "About", id: "about" },
@@ -114,7 +113,7 @@ export default function MenuProfile() {
             <About />
           </div>
           <div ref={sectionRefs["team"]} id="team">
-            <Team />
+            <TeamAll />
           </div>
           <div ref={sectionRefs["individual"]} id="individual">
             <Individual />
@@ -123,19 +122,19 @@ export default function MenuProfile() {
             <FAQ />
           </div>
           <div ref={sectionRefs["update"]} id="update">
-            <Update />
+            <UpdateAll />
           </div>
         </div>
         <div className="block lg:hidden">
           {activeMobile === 0 && (
             <>
               <About />
-              <Team />
+              <TeamAll />
             </>
           )}
           {activeMobile === 1 && <Individual />}
           {activeMobile === 2 && <FAQ />}
-          {activeMobile === 3 && <Update />}
+          {activeMobile === 3 && <UpdateAll />}
         </div>
       </div>
     </>

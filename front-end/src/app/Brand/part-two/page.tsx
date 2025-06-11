@@ -36,7 +36,7 @@ export default function Part_Two() {
       },
       {
         onSuccess: () => {
-          router.push("/brand/part-three");
+          router.push("/Brand/part-three");
         },
       }
     );

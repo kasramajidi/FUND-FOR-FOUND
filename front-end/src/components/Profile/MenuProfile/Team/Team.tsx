@@ -3,27 +3,28 @@ import CreateTeam from "./CreateTeam";
 import EditTeam from "./EditTeam";
 import useGetTeam from "./useGetTeam";
 import { MdEdit } from "react-icons/md";
+import { useParams } from "next/navigation";
+
 export default function Team() {
   const [isCreateTeam, setIsCreateTeam] = useState(false);
   const [isEditTeam, setIsEditTeam] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
-  const { data } = useGetTeam();
+
+  const params = useParams();
+  const brandId = params.brandId;
+  const { data, isLoading } = useGetTeam(brandId);
 
   let teams = [];
-  if (data && Array.isArray(data.data)) {
-    teams = data.data.map((item) => ({
-      ...item,
-    }));
+  if (data) {
+    teams = [data]; // If data is a single team object, put it in an array for mapping
   }
 
+  if (isLoading) return <div>Loading...</div>; // Add loading state
+
   return (
-    <div className="flex flex-col items-start gap-12 mt-28 max-lg:gap-6 max-lg:mt-16 w-full px-4 md:px-6 lg:px-0">
-      <div className="flex items-center gap-3 max-lg:gap-2">
-        <div className="w-3 h-3 bg-[rgba(100,79,193,1)] max-lg:w-2 max-lg:h-2"></div>
-        <span className="font-bold text-2xl max-lg:text-lg">Team</span>
-      </div>
+    <div>
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {(!teams || teams.length === 0) && (
+        {teams.length === 0 && (
           <div className="flex flex-col items-center justify-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-64 h-[300px] sm:h-[350px] md:h-[400px] lg:h-[439px] border border-gray-300 rounded-lg mx-auto">
             <span className="text-[rgba(68,68,68,1)] text-lg mb-4">
               Invite team member
@@ -49,7 +50,7 @@ export default function Team() {
             </button>
           </div>
         )}
-        {teams && teams.length > 0 && (
+        {teams.length > 0 && (
           <>
             {teams.map((team) => (
               <div
@@ -107,6 +108,7 @@ export default function Team() {
                 </div>
               </div>
             ))}
+            {/* Add new team member button always shown when teams data is loaded */}
             <div className="flex flex-col items-center justify-center w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-64 h-[300px] sm:h-[350px] md:h-[400px] lg:h-[439px] border border-gray-300 rounded-lg">
               <span className="text-[rgba(68,68,68,1)] text-lg mb-4">
                 Invite team member

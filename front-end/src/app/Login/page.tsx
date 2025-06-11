@@ -84,7 +84,7 @@ export default function Login() {
           }
 
           // Redirect to dashboard or home
-          router.push("/brand");
+          router.push("/Brand");
         } catch (storageError) {
           console.error("Error storing data in localStorage:", storageError);
           setError(

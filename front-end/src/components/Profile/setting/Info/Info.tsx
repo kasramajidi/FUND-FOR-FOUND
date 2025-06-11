@@ -51,12 +51,12 @@ export default function Info() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto w-full bg-white rounded-xl">
-      <h2 className="font-bold text-2xl text-[rgba(68,68,68,1)] mb-8 flex items-center gap-2">
+    <div className="max-w-5xl mx-auto w-full bg-white rounded-xl px-2 py-4 sm:px-8 sm:py-8">
+      <h2 className="font-bold text-base sm:text-2xl text-[rgba(68,68,68,1)] mb-4 sm:mb-8 flex items-center gap-2">
         <span className="w-3 h-3 bg-[rgba(100,79,193,1)] inline-block"></span>
         Info
       </h2>
-      <form className="flex flex-col gap-6">
+      <form className="flex flex-col gap-3 sm:gap-6">
         <div>
           <label className="block text-sm font-medium mb-1">
             Use the below code in your analyits for track your page
@@ -194,11 +194,11 @@ export default function Info() {
               );
             })}
             {/* Add new social */}
-            <div className="flex gap-2 items-center self-center mt-5">
+            <div className="flex items-center mt-3 sm:mt-5">
               <button
                 type="button"
                 onClick={handleAddSocial}
-                className="text-[rgba(149,149,149,1)] cursor-pointer border border-[rgba(199,198,198,1)] rounded px-3 py-2 bg-[rgba(245,245,245,1)] hover:bg-[#ede9fe] transition"
+                className=" text-[rgba(149,149,149,1)] cursor-pointer border border-[rgba(199,198,198,1)] rounded px-2 py-2 sm:px-3 sm:py-2 bg-[rgba(245,245,245,1)] hover:bg-[#ede9fe] transition text-xs sm:text-sm mx-auto"
               >
                 + Add social link
               </button>

@@ -1,29 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-interface FAQ {
-  documentId: number;
-  question: string;
-  answer: string;
-}
-
-interface StrapiResponse {
-  data: FAQ[];
-}
-
-const getFAQ = async (): Promise<StrapiResponse> => {
+const getBrand = async (brandId) => {
   const response = await axios.get(
-    "https://fund-for-found-u0xg.onrender.com/api/faqs"
+    `https://fund-for-found-u0xg.onrender.com/api/brands/${brandId}`
   );
-  return response.data;
+  return response.data.faqs || [];
 };
 
-export const useGetFAQ = () => {
+export const useGetFAQ = (brandId) => {
   return useQuery({
-    queryKey: ["faqs"],
-    queryFn: getFAQ,
+    queryKey: ["brand", brandId],
+    queryFn: () => getBrand(brandId),
     staleTime: 1000 * 60 * 1, // 1 minute
     gcTime: 1000 * 60 * 30, // 30 minutes
+    enabled: !!brandId, // فقط زمانی اجرا شود که brandId موجود باشد
     refetchInterval: 5000,
   });
 };
