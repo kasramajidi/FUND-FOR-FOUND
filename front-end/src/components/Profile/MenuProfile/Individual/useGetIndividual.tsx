@@ -7,7 +7,7 @@ export default function useGetIndividual() {
     const { data, isLoading, error } = useQuery({
         queryKey: ["individual"],
         queryFn: async () => {
-            const response = await axios.get(`http://localhost:1337/api/individual`);
+            const response = await axios.get(`http://localhost:1337/api/individuals`);
             return response.data;
         }
     });

@@ -28,7 +28,7 @@ module.exports = {
             service: "gmail",
             auth: {
                 user: "kasramajidy81@gmail.com",
-                pass: "nnqtxfqyiflhsenw", // اینجا رمز عبور برنامه Gmail را قرار دهید
+                pass: "jwbgrzhmwlvdtgmb", // اینجا رمز عبور برنامه Gmail را قرار دهید
             },
         });
 
