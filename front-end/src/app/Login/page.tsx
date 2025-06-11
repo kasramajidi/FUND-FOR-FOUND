@@ -62,7 +62,7 @@ export default function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:1337/api/auth/local",
+        "https://fund-for-found-u0xg.onrender.com/api/auth/local",
         {
           identifier: email,
           password: password,

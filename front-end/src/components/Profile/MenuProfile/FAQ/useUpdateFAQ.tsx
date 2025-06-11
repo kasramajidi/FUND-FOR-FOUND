@@ -8,9 +8,12 @@ interface FAQ {
 }
 
 const updateFAQ = async (faq: FAQ) => {
-  const response = await axios.put(`http://localhost:1337/api/faqs/${faq.id}`, {
-    data: { question: faq.question, answer: faq.answer },
-  });
+  const response = await axios.put(
+    `https://fund-for-found-u0xg.onrender.com/api/faqs/${faq.id}`,
+    {
+      data: { question: faq.question, answer: faq.answer },
+    }
+  );
   return response.data;
 };
 

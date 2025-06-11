@@ -9,7 +9,7 @@ interface RemoveTeamData {
 
 const removeTeam = async (data: RemoveTeamData) => {
   const response = await axios.delete(
-    `http://localhost:1337/api/teams/${data.id}`
+    `https://fund-for-found-u0xg.onrender.com/api/teams/${data.id}`
   );
   return response.data;
 };

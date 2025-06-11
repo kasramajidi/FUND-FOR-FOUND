@@ -25,7 +25,7 @@ interface ApiResponse {
 const apiPostEmail = async (user: User): Promise<ApiResponse> => {
   // Explicitly type the response from axios.post
   const response = await axios.post<ApiResponse>(
-    `http://localhost:1337/api/register`,
+    `https://fund-for-found-u0xg.onrender.com/api/register`,
     {
       firstName: user.firstName,
       lastName: user.lastName,

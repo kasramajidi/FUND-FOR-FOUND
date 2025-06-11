@@ -15,7 +15,7 @@ export default function useGetCover() {
     mutationFn: async (brandId: string) => {
       try {
         const response = await axios.get<GetApiCover>(
-          `http://localhost:1337/api/brands/${brandId}`
+          `https://fund-for-found-u0xg.onrender.com/api/brands/${brandId}`
         );
         return response.data;
       } catch (err) {

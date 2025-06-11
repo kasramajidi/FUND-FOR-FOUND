@@ -13,7 +13,7 @@ interface ApiResponse {
 const apiPostEmail = async (user: User): Promise<ApiResponse> => {
   try {
     const response = await axios.post<ApiResponse>(
-      "http://localhost:1337/api/email/send-verification",
+      "https://fund-for-found-u0xg.onrender.com/api/email/send-verification",
       {
         email: user.email,
       }

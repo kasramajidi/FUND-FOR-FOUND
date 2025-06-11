@@ -64,9 +64,12 @@ export default function Cover() {
       setIsLoading(true);
       try {
         const imageUrl = await uploadToCloudinary(selectedFile);
-        await axios.put(`http://localhost:1337/api/brands/${brandId}`, {
-          data: { cover: imageUrl },
-        });
+        await axios.put(
+          `https://fund-for-found-u0xg.onrender.com/api/brands/${brandId}`,
+          {
+            data: { cover: imageUrl },
+          }
+        );
         setOpenModal(false);
         getCover(brandId);
       } catch {

@@ -7,9 +7,12 @@ interface FAQ {
 }
 
 const postFAQ = async (faq: FAQ) => {
-  const response = await axios.post("http://localhost:1337/api/faqs", {
-    data: { question: faq.question, answer: faq.answer },
-  });
+  const response = await axios.post(
+    "https://fund-for-found-u0xg.onrender.com/api/faqs",
+    {
+      data: { question: faq.question, answer: faq.answer },
+    }
+  );
   return response.data;
 };
 

@@ -2,16 +2,16 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
 interface UpdateTeamProps {
-    id: string | number;
-    name: string;
-    role: string;
-    description: string;
-    email: string;
-  }
+  id: string | number;
+  name: string;
+  role: string;
+  description: string;
+  email: string;
+}
 
 const apiUpdateTeam = async (data: UpdateTeamProps) => {
   const response = await axios.put(
-    `http://localhost:1337/api/teams/${data.id}`,
+    `https://fund-for-found-u0xg.onrender.com/api/teams/${data.id}`,
     {
       data: {
         name: data.name,

@@ -22,7 +22,7 @@ interface ApiResponse {
 
 const apiGetTeam = async (): Promise<ApiResponse> => {
   try {
-    const url = `http://localhost:1337/api/teams`;
+    const url = `https://fund-for-found-u0xg.onrender.com/api/teams`;
     const response = await axios.get<ApiResponse>(url);
     return response.data;
   } catch (error) {

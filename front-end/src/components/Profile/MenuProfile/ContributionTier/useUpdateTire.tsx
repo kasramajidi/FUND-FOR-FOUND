@@ -13,7 +13,10 @@ export default function useUpdateTire(brandId: number, tireId: number) {
 
   return useMutation({
     mutationFn: (data: TireData) =>
-      axios.put(`http://localhost:1337/api/tires/${tireId}`, { data }),
+      axios.put(
+        `https://fund-for-found-u0xg.onrender.com/api/tires/${tireId}`,
+        { data }
+      ),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["brand-tires", brandId] });
     },

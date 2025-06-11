@@ -42,7 +42,7 @@ interface Brand {
 const getBrandTires = async (brandId: number): Promise<Tire[]> => {
   try {
     const response = await axios.get<Brand>(
-      `http://localhost:1337/api/brands/${brandId}`
+      `https://fund-for-found-u0xg.onrender.com/api/brands/${brandId}`
     );
     return response.data.tires || [];
   } catch (error) {

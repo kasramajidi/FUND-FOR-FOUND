@@ -60,9 +60,12 @@ export default function LogoProfile() {
       setIsLoading(true);
       try {
         const imageUrl = await uploadToCloudinary(selectedFile);
-        await axios.put(`http://localhost:1337/api/brands/${brandId}`, {
-          data: { pictureProfile: imageUrl },
-        });
+        await axios.put(
+          `https://fund-for-found-u0xg.onrender.com/api/brands/${brandId}`,
+          {
+            data: { pictureProfile: imageUrl },
+          }
+        );
         setOpenModal(false);
         setSelectedFile(null);
         setSelectedImage(null);

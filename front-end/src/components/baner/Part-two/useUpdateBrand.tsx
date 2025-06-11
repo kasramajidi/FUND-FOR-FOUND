@@ -32,7 +32,7 @@ interface ApiResponse {
 const apiUpdateBrand = async (data: IDData): Promise<ApiResponse> => {
   try {
     // Debug log for request
-    const url = `http://localhost:1337/api/brands/${data.brandId}`;
+    const url = `https://fund-for-found-u0xg.onrender.com/api/brands/${data.brandId}`;
     const payload = {
       data: {
         description: data.description,

@@ -21,7 +21,7 @@ interface ApiResponse {
 
 const apiCreateTeam = async (data: TeamData): Promise<ApiResponse> => {
   try {
-    const url = `http://localhost:1337/api/teams`;
+    const url = `https://fund-for-found-u0xg.onrender.com/api/teams`;
     const payload = {
       data: {
         name: data.name,

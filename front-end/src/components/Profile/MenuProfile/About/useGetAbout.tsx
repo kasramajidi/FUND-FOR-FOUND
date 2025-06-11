@@ -2,23 +2,25 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 interface About {
-    id: number;
-    picture: string;
-    description: string;
+  id: number;
+  picture: string;
+  description: string;
 }
 
 interface AboutResponse {
-    data: About;
+  data: About;
 }
 
 const getAbout = async (): Promise<AboutResponse> => {
-    const response = await axios.get<AboutResponse>("http://localhost:1337/api/about-brands");
-    return response.data;
+  const response = await axios.get<AboutResponse>(
+    "https://fund-for-found-u0xg.onrender.com/api/about-brands"
+  );
+  return response.data;
 };
 
 export const useGetAbout = () => {
-    return useQuery({
-        queryKey: ["about"],
-        queryFn: getAbout,
-    });
+  return useQuery({
+    queryKey: ["about"],
+    queryFn: getAbout,
+  });
 };

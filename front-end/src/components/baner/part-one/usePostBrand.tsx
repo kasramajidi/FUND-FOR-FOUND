@@ -39,7 +39,7 @@ const postApiBrand = async (user: Brand): Promise<BrandResponse> => {
   });
 
   const response = await axios.post(
-    "http://localhost:1337/api/brands",
+    "https://fund-for-found-u0xg.onrender.com/api/brands",
     {
       data: {
         brand: user.brand,

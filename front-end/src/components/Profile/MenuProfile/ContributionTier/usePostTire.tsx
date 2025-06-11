@@ -22,7 +22,7 @@ interface ApiResponse {
 
 const apiPostTire = async (data: TireProp): Promise<ApiResponse> => {
   try {
-    const url = `http://localhost:1337/api/tires`;
+    const url = `https://fund-for-found-u0xg.onrender.com/api/tires`;
     const payload = {
       data: {
         name: data.name,

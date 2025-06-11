@@ -12,7 +12,7 @@ export default function useGetBrand(brandId: string | null) {
   const mutation = useMutation({
     mutationFn: async (id: string) => {
       const response = await axios.get<BrandData>(
-        `http://localhost:1337/api/brands/${id}`
+        `https://fund-for-found-u0xg.onrender.com/api/brands/${id}`
       );
       return response.data;
     },

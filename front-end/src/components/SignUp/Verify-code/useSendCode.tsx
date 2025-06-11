@@ -14,7 +14,7 @@ interface ApiResponse {
 const apiPostEmail = async (user: User): Promise<ApiResponse> => {
   try {
     const response = await axios.post<ApiResponse>(
-      "http://localhost:1337/api/email/verify-code",
+      "https://fund-for-found-u0xg.onrender.com/api/email/verify-code",
       {
         email: user.email,
         code: user.code,

@@ -7,7 +7,7 @@ interface DeleteFAQParams {
 
 const deleteFAQ = async (params: DeleteFAQParams) => {
   const response = await axios.delete(
-    `http://localhost:1337/api/faqs/${params.id}`
+    `https://fund-for-found-u0xg.onrender.com/api/faqs/${params.id}`
   );
   return response.data;
 };

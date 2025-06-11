@@ -12,7 +12,9 @@ interface StrapiResponse {
 }
 
 const getFAQ = async (): Promise<StrapiResponse> => {
-  const response = await axios.get("http://localhost:1337/api/faqs");
+  const response = await axios.get(
+    "https://fund-for-found-u0xg.onrender.com/api/faqs"
+  );
   return response.data;
 };
 

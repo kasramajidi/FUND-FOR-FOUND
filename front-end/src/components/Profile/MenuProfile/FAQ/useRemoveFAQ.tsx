@@ -7,7 +7,7 @@ interface FAQ {
 
 const removeFAQ = async (faq: FAQ) => {
   const response = await axios.delete(
-    `http://localhost:1337/api/faqs/${faq.id}`
+    `https://fund-for-found-u0xg.onrender.com/api/faqs/${faq.id}`
   );
   return response.data;
 };
