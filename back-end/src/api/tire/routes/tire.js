@@ -27,7 +27,7 @@ module.exports = {
             path: '/tires',
             handler: 'tire.create',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
@@ -35,7 +35,7 @@ module.exports = {
             path: '/tires/:id',
             handler: 'tire.update',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
@@ -43,7 +43,7 @@ module.exports = {
             path: '/tires/:id',
             handler: 'tire.delete',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
     ],

@@ -27,7 +27,7 @@ module.exports = {
             path: '/faqs',
             handler: 'faq.create',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
@@ -35,7 +35,7 @@ module.exports = {
             path: '/faqs/:id',
             handler: 'faq.update',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
@@ -43,7 +43,7 @@ module.exports = {
             path: '/faqs/:id',
             handler: 'faq.delete',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
     ],

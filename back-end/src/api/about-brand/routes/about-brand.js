@@ -27,7 +27,7 @@ module.exports = {
             path: '/about-brands',
             handler: 'about-brand.create',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
@@ -35,7 +35,7 @@ module.exports = {
             path: '/about-brands/:id',
             handler: 'about-brand.update',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
@@ -43,7 +43,7 @@ module.exports = {
             path: '/about-brands/:id',
             handler: 'about-brand.delete',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
     ],

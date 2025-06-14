@@ -27,7 +27,7 @@ module.exports = {
             path: '/teams',
             handler: 'team.create',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
@@ -35,7 +35,7 @@ module.exports = {
             path: '/teams/:id',
             handler: 'team.update',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
@@ -43,7 +43,7 @@ module.exports = {
             path: '/teams/:id',
             handler: 'team.delete',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
     ],
