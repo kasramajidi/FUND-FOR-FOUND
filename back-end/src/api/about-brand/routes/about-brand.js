@@ -29,7 +29,7 @@ module.exports = {
             path: '/about-brands',
             handler: 'about-brand.create',
             config: {
-                policies: ['is-owner'],
+                policies: [],
             },
         },
         {
