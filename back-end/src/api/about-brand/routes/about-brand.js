@@ -4,8 +4,6 @@
  * about-brand router
  */
 
-const { createCoreRouter } = require('@strapi/strapi').factories;
-
 module.exports = {
     routes: [
         {
@@ -29,7 +27,7 @@ module.exports = {
             path: '/about-brands',
             handler: 'about-brand.create',
             config: {
-                policies: [],
+                policies: ['is-owner'],
             },
         },
         {
@@ -37,7 +35,7 @@ module.exports = {
             path: '/about-brands/:id',
             handler: 'about-brand.update',
             config: {
-                policies: [],
+                policies: ['is-owner'],
             },
         },
         {
@@ -45,7 +43,7 @@ module.exports = {
             path: '/about-brands/:id',
             handler: 'about-brand.delete',
             config: {
-                policies: [],
+                policies: ['is-owner'],
             },
         },
     ],
