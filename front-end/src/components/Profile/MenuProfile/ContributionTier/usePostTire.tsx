@@ -23,6 +23,10 @@ interface ApiResponse {
 const apiPostTire = async (data: TireProp): Promise<ApiResponse> => {
   try {
     const url = `https://fund-for-found-u0xg.onrender.com/api/tires`;
+
+    // Get JWT token from localStorage
+    const jwt = localStorage.getItem("jwt");
+
     const payload = {
       data: {
         name: data.name,
@@ -32,8 +36,18 @@ const apiPostTire = async (data: TireProp): Promise<ApiResponse> => {
         brand: data.brand,
       },
     };
-    console.log("DEBUG API REQUEST", { url, payload });
-    const response = await axios.post<ApiResponse>(url, payload);
+
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    // Add JWT token to headers if it exists
+    if (jwt) {
+      headers["Authorization"] = `Bearer ${jwt}`;
+    }
+
+    console.log("DEBUG API REQUEST", { url, payload, headers });
+    const response = await axios.post<ApiResponse>(url, payload, { headers });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

@@ -6,7 +6,7 @@ import EditFAQ from "./EditFAQ";
 import { useParams } from "next/navigation";
 import { useGetFAQ } from "./useGetFAQ";
 interface FAQItem {
-  documentId: number;
+  documentId: string;
   question: string;
   answer: string;
 }
@@ -40,7 +40,7 @@ export default function FAQ() {
       <div className="flex flex-col gap-5 w-full">
         {faqs.length === 0 && <div>No FAQs for this brand.</div>}
         {faqs.map((faq) => (
-          <div key={faq.id}>
+          <div key={faq.documentId}>
             <div
               className="flex w-full items-center gap-3 cursor-pointer max-sm:gap-2"
               onClick={() => setOpenIndex(openIndex === faq.id ? null : faq.id)}
@@ -67,7 +67,7 @@ export default function FAQ() {
                 type="button"
                 onClick={(e) =>
                   handleEdit(e, {
-                    documentId: faq.id,
+                    documentId: faq.documentId,
                     question: faq.question,
                     answer: faq.answer,
                   })

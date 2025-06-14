@@ -18,10 +18,13 @@ export default function Baner() {
       <div className="max-w-5xl mx-auto flex items-center justify-between">
         <Communication />
         <Link href={`/profile/setting/${brandId}`} className="hidden lg:flex">
-          <button className="bg-[rgba(100,79,193,1)] flex items-center gap-2 cursor-pointer text-white px-6 py-2 rounded-lg hover:bg-[rgba(100,79,193,0.8)]"><IoSettingsOutline />Setting</button>        
+          <button className="bg-[rgba(100,79,193,1)] flex items-center gap-2 cursor-pointer text-white px-6 py-2 rounded-lg hover:bg-[rgba(100,79,193,0.8)]">
+            <IoSettingsOutline />
+            Setting
+          </button>
         </Link>
         <Link href={`/profile/setting/${brandId}`} className="lg:hidden block">
-          <IoMdSettings size={30} className="mr-5 text-[rgba(100,79,193,1)]"/>
+          <IoMdSettings size={30} className="mr-5 text-[rgba(100,79,193,1)]" />
         </Link>
       </div>
     </div>

@@ -20,30 +20,48 @@ const createOrUpdateAbout = async (
   data: AboutData
 ): Promise<AboutApiResponse> => {
   try {
+    // Get JWT token from localStorage
+    const jwt = localStorage.getItem("jwt");
+
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    // Add JWT token to headers if it exists
+    if (jwt) {
+      headers["Authorization"] = `Bearer ${jwt}`;
+    }
+
     const brandResponse = await axios.get<{
       data: {
         id: number;
         attributes: { about_brand: { data: { id: number } | null } };
       };
-    }>(`http://localhost: 1337/api/brands/${data.brand}`);
+    }>(`http://localhost: 1337/api/brands/${data.brand}`, { headers });
     const brand = brandResponse.data.data;
     const aboutBrandRelation = brand.attributes.about_brand?.data;
     let aboutId: number;
     if (aboutBrandRelation === null) {
       const createResponse = await axios.post<AboutApiResponse>(
         "http://localhost: 1337/api/about-brands",
-        { data }
+        { data },
+        { headers }
       );
       aboutId = createResponse.data.data.id;
-      await axios.patch(`http://localhost: 1337/api/brands/${brand.id}`, {
-        data: { about_brand: { connect: [{ id: aboutId }] } },
-      });
+      await axios.patch(
+        `http://localhost: 1337/api/brands/${brand.id}`,
+        {
+          data: { about_brand: { connect: [{ id: aboutId }] } },
+        },
+        { headers }
+      );
       return createResponse.data;
     } else {
       aboutId = aboutBrandRelation.id;
       const updateResponse = await axios.put<AboutApiResponse>(
         `http://localhost: 1337/api/about-brands/${aboutId}`,
-        { data }
+        { data },
+        { headers }
       );
       return updateResponse.data;
     }

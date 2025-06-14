@@ -21,6 +21,18 @@ interface ApiResponse {
 
 const apiCreateTeam = async (data: TeamData): Promise<ApiResponse> => {
   try {
+    // Get JWT token from localStorage
+    const jwt = localStorage.getItem("jwt");
+
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    // Add JWT token to headers if it exists
+    if (jwt) {
+      headers["Authorization"] = `Bearer ${jwt}`;
+    }
+
     const url = `https://fund-for-found-u0xg.onrender.com/api/teams`;
     const payload = {
       data: {
@@ -30,7 +42,7 @@ const apiCreateTeam = async (data: TeamData): Promise<ApiResponse> => {
         email: data.email,
       },
     };
-    const response = await axios.post<ApiResponse>(url, payload);
+    const response = await axios.post<ApiResponse>(url, payload, { headers });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

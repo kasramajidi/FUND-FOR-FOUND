@@ -8,8 +8,21 @@ interface RemoveTeamData {
 }
 
 const removeTeam = async (data: RemoveTeamData) => {
+  // Get JWT token from localStorage
+  const jwt = localStorage.getItem("jwt");
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
+
+  // Add JWT token to headers if it exists
+  if (jwt) {
+    headers["Authorization"] = `Bearer ${jwt}`;
+  }
+
   const response = await axios.delete(
-    `https://fund-for-found-u0xg.onrender.com/api/teams/${data.id}`
+    `https://fund-for-found-u0xg.onrender.com/api/teams/${data.id}`,
+    { headers }
   );
   return response.data;
 };

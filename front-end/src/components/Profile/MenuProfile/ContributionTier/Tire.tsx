@@ -28,7 +28,7 @@ export default function Tire({ brandId }: TireProps) {
   // تبدیل داده‌های API به فرمت کارت
   const apiTiers =
     tires?.map((tire) => ({
-      id: tire.id,
+      id: tire.documentId,
       title: tire.name,
       description: tire.discription,
       image: tire.tirCover || null,

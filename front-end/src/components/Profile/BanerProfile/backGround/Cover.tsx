@@ -64,11 +64,24 @@ export default function Cover() {
       setIsLoading(true);
       try {
         const imageUrl = await uploadToCloudinary(selectedFile);
+        // Get JWT token from localStorage
+        const jwt = localStorage.getItem("jwt");
+
+        const headers: Record<string, string> = {
+          "Content-Type": "application/json",
+        };
+
+        // Add JWT token to headers if it exists
+        if (jwt) {
+          headers["Authorization"] = `Bearer ${jwt}`;
+        }
+
         await axios.put(
           `https://fund-for-found-u0xg.onrender.com/api/brands/${brandId}`,
           {
             data: { cover: imageUrl },
-          }
+          },
+          { headers }
         );
         setOpenModal(false);
         getCover(brandId);

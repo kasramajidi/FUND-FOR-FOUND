@@ -3,7 +3,7 @@ import { useUpdateFAQ } from "./useUpdateFAQ";
 import { useDeleteFAQ } from "./useDeleteFAQ";
 
 interface FAQItem {
-  documentId: number;
+  documentId: string;
   question: string;
   answer: string;
 }

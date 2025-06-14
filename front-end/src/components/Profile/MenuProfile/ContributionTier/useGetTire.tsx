@@ -22,7 +22,6 @@ interface Tire {
 }
 
 interface Brand {
-  id: number;
   documentId: string;
   brand: string;
   category: string;

@@ -31,6 +31,18 @@ interface ApiResponse {
 
 const apiUpdateBrand = async (data: IDData): Promise<ApiResponse> => {
   try {
+    // Get JWT token from localStorage
+    const jwt = localStorage.getItem("jwt");
+
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+    };
+
+    // Add JWT token to headers if it exists
+    if (jwt) {
+      headers["Authorization"] = `Bearer ${jwt}`;
+    }
+
     // Debug log for request
     const url = `https://fund-for-found-u0xg.onrender.com/api/brands/${data.brandId}`;
     const payload = {
@@ -40,7 +52,7 @@ const apiUpdateBrand = async (data: IDData): Promise<ApiResponse> => {
       },
     };
     console.log("DEBUG API REQUEST", { url, payload });
-    const response = await axios.put<ApiResponse>(url, payload);
+    const response = await axios.put<ApiResponse>(url, payload, { headers });
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
